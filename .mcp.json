@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "build123d": {
+      "command": "cmd",
+      "args": ["/c", "C:\\3D\\scripts\\mcp.cmd", "uv", "tool", "run", "--python", "3.12", "build123d-mcp@latest"]
+    },
+    "blender": {
+      "command": "cmd",
+      "args": ["/c", "C:\\3D\\scripts\\mcp.cmd", "uvx", "mcp-for-blender"],
+      "env": { "BLENDER_HOST": "localhost", "BLENDER_PORT": "9876", "DISABLE_TELEMETRY": "true" }
+    },
+    "freecad": {
+      "command": "cmd",
+      "args": ["/c", "C:\\3D\\scripts\\mcp.cmd", "uvx", "freecad-mcp", "--only-text-feedback"]
+    },
+    "openscad": {
+      "command": "cmd",
+      "args": ["/c", "C:\\3D\\scripts\\mcp.cmd", "uvx", "openscad-mcp"],
+      "env": { "OPENSCAD_PATH": "C:\\Program Files\\OpenSCAD (Nightly)\\openscad.exe" }
+    }
+  }
+}

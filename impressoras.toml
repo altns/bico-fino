@@ -1,0 +1,99 @@
+# Perfis de impressora usados pelos scripts (volume útil, limites, multicor).
+# Escolha a ativa com IMPRESSORA=<chave> no .env, com --impressora <chave> nos scripts,
+# ou mudando "padrao" abaixo. Confira os valores no manual do seu modelo e acrescente o seu.
+#
+#   volume    = [X, Y, Z] em mm
+#   bico_max  = temperatura máxima do bico (°C)
+#   mesa_max  = temperatura máxima da mesa (°C)
+#   fechada   = tem enclosure (ABS/ASA)
+#   multicor  = número de filamentos no sistema multicor (1 = sem)
+
+padrao = "ad5x"
+
+[impressoras.ad5x]
+nome = "Flashforge AD5X"
+volume = [220, 220, 220]
+bico_max = 300
+mesa_max = 110
+fechada = false
+multicor = 4  # IFS
+
+[impressoras.adventurer-5m]
+nome = "Flashforge Adventurer 5M"
+volume = [220, 220, 220]
+bico_max = 280
+mesa_max = 110
+fechada = false
+multicor = 1
+
+[impressoras.bambu-a1]
+nome = "Bambu Lab A1"
+volume = [256, 256, 256]
+bico_max = 300
+mesa_max = 100
+fechada = false
+multicor = 4  # AMS lite
+
+[impressoras.bambu-a1-mini]
+nome = "Bambu Lab A1 mini"
+volume = [180, 180, 180]
+bico_max = 300
+mesa_max = 80
+fechada = false
+multicor = 4  # AMS lite
+
+[impressoras.bambu-p1s]
+nome = "Bambu Lab P1S"
+volume = [256, 256, 256]
+bico_max = 300
+mesa_max = 100
+fechada = true
+multicor = 4  # AMS
+
+[impressoras.bambu-x1c]
+nome = "Bambu Lab X1 Carbon"
+volume = [256, 256, 256]
+bico_max = 300
+mesa_max = 110
+fechada = true
+multicor = 4  # AMS
+
+[impressoras.k2-pro]
+nome = "Creality K2 Pro"
+volume = [300, 300, 300]
+bico_max = 350
+mesa_max = 120
+fechada = true
+multicor = 4  # CFS
+
+[impressoras.k1c]
+nome = "Creality K1C"
+volume = [220, 220, 250]
+bico_max = 300
+mesa_max = 100
+fechada = true
+multicor = 1
+
+[impressoras.ender3-v3]
+nome = "Creality Ender-3 V3"
+volume = [220, 220, 250]
+bico_max = 300
+mesa_max = 110
+fechada = false
+multicor = 1
+
+[impressoras.prusa-mk4s]
+nome = "Prusa MK4S"
+volume = [250, 210, 220]
+bico_max = 290
+mesa_max = 120
+fechada = false
+multicor = 1
+
+[impressoras.prusa-core-one]
+nome = "Prusa CORE One"
+volume = [250, 220, 270]
+bico_max = 290
+mesa_max = 120
+fechada = true
+multicor = 1

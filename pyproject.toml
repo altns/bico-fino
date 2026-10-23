@@ -1,0 +1,22 @@
+[project]
+name = "estudio-3d"
+version = "0.1.0"
+description = "Ferramentas de modelagem e preparo para impressão 3D FDM (qualquer impressora; perfis em impressoras.toml)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "trimesh[easy]>=4.5",
+  "manifold3d>=3.0",
+  "numpy",
+  "shapely>=2.0",
+  "matplotlib",
+  "scipy",
+  "rtree",
+  "lxml",
+  "build123d>=0.9",
+  "pymeshlab",
+  "flashforge-python-api>=1.6",
+  "python-dotenv",
+]
+
+[tool.uv]
+package = false

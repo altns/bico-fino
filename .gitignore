@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+*.gcode
+*.bgcode
+modelos/exportados/
+.env
+
+# Blender/FreeCAD backups e temporários
+*.blend1
+*.FCBak
+*.FCStd1
+.claude/settings.local.json
+
+# Projetos pessoais e modelos baixados: ficam só na máquina (repositório público)
+projetos/*
+!projetos/.gitkeep
+modelos/originais/*
+!modelos/originais/.gitkeep

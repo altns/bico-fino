@@ -1,0 +1,3 @@
+{
+  "enabledMcpjsonServers": ["build123d", "blender", "freecad", "openscad"]
+}
