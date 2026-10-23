@@ -1,7 +1,7 @@
 [project]
-name = "estudio-3d"
+name = "bico-fino"
 version = "0.1.0"
-description = "Ferramentas de modelagem e preparo para impressão 3D FDM (qualquer impressora; perfis em impressoras.toml)"
+description = "Tools for modeling and preparing FDM 3D prints (any printer; profiles in printers.toml)"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "trimesh[easy]>=4.5",

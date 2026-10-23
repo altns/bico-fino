@@ -1,17 +1,17 @@
-"""Repara malhas com problemas comuns (buracos, normais invertidas, faces duplicadas/degeneradas).
+"""Repair meshes with common problems (holes, flipped normals, duplicate/degenerate faces).
 
-    python scripts/reparar_malha.py entrada.stl saida.3mf
+    python scripts/repair_mesh.py input.stl output.3mf
 """
 import argparse
 
 import pymeshlab
 import trimesh
 
-from estudio3d import carregar, limpar, salvar_3mf
+from bicofino import clean, load, save_3mf
 
 
-def reparar(m: trimesh.Trimesh) -> trimesh.Trimesh:
-    m = limpar(m)
+def repair(m: trimesh.Trimesh) -> trimesh.Trimesh:
+    m = clean(m)
     if m.is_watertight:
         trimesh.repair.fix_normals(m)
         return m
@@ -32,18 +32,18 @@ def reparar(m: trimesh.Trimesh) -> trimesh.Trimesh:
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("entrada")
-    p.add_argument("saida")
+    p.add_argument("input")
+    p.add_argument("output")
     a = p.parse_args()
     objs = []
-    for nome, m in carregar(a.entrada, juntar=False):
-        r = reparar(m)
-        print(f"{nome}: fechada antes={m.is_watertight} depois={r.is_watertight}")
-        objs.append((nome, r))
-    if a.saida.lower().endswith(".3mf"):
-        salvar_3mf(a.saida, objs)
+    for name, m in load(a.input, merge=False):
+        r = repair(m)
+        print(f"{name}: watertight before={m.is_watertight} after={r.is_watertight}")
+        objs.append((name, r))
+    if a.output.lower().endswith(".3mf"):
+        save_3mf(a.output, objs)
     else:
-        trimesh.util.concatenate([m for _, m in objs]).export(a.saida)
+        trimesh.util.concatenate([m for _, m in objs]).export(a.output)
 
 
 if __name__ == "__main__":

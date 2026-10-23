@@ -3,17 +3,17 @@ __pycache__/
 *.pyc
 *.gcode
 *.bgcode
-modelos/exportados/
+models/exports/
 .env
 
-# Blender/FreeCAD backups e temporários
+# Blender/FreeCAD backups and temp files
 *.blend1
 *.FCBak
 *.FCStd1
 .claude/settings.local.json
 
-# Projetos pessoais e modelos baixados: ficam só na máquina (repositório público).
-# No setup do autor, são junções para um repositório privado em privado/.
-/projetos
-/modelos/originais
-/privado/
+# Personal projects and downloaded models stay on your machine (public repository).
+# In the author's setup they are junctions into a private repository at private/.
+/projects
+/models/downloads
+/private/

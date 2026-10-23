@@ -1,5 +1,5 @@
 @echo off
-rem Inicia um servidor MCP a partir de C:\3D, com as ferramentas do mise.toml (uv/uvx, Python 3.12).
-rem Chama o mise pelo caminho completo para funcionar mesmo quando o PATH do processo nao tem os shims.
+rem Starts an MCP server from the repo root, with the tools from mise.toml (uv/uvx, Python 3.12).
+rem Calls mise by its full path so it works even when the process PATH has no shims.
 cd /d "%~dp0.."
 "%LOCALAPPDATA%\Microsoft\WinGet\Links\mise.exe" x -- %*

@@ -1,0 +1,99 @@
+# Printer profiles used by the scripts (build volume, limits, multi-color).
+# Pick the active one with PRINTER=<key> in .env, with --printer <key> in the scripts,
+# or by changing "default" below. Check the values against your model's manual and add your own.
+#
+#   build_volume    = [X, Y, Z] in mm
+#   max_nozzle_temp = maximum nozzle temperature (°C)
+#   max_bed_temp    = maximum bed temperature (°C)
+#   enclosed        = has an enclosure (ABS/ASA)
+#   filament_slots  = filaments in the multi-color system (1 = none)
+
+default = "ad5x"
+
+[printers.ad5x]
+name = "Flashforge AD5X"
+build_volume = [220, 220, 220]
+max_nozzle_temp = 300
+max_bed_temp = 110
+enclosed = false
+filament_slots = 4  # IFS
+
+[printers.adventurer-5m]
+name = "Flashforge Adventurer 5M"
+build_volume = [220, 220, 220]
+max_nozzle_temp = 280
+max_bed_temp = 110
+enclosed = false
+filament_slots = 1
+
+[printers.bambu-a1]
+name = "Bambu Lab A1"
+build_volume = [256, 256, 256]
+max_nozzle_temp = 300
+max_bed_temp = 100
+enclosed = false
+filament_slots = 4  # AMS lite
+
+[printers.bambu-a1-mini]
+name = "Bambu Lab A1 mini"
+build_volume = [180, 180, 180]
+max_nozzle_temp = 300
+max_bed_temp = 80
+enclosed = false
+filament_slots = 4  # AMS lite
+
+[printers.bambu-p1s]
+name = "Bambu Lab P1S"
+build_volume = [256, 256, 256]
+max_nozzle_temp = 300
+max_bed_temp = 100
+enclosed = true
+filament_slots = 4  # AMS
+
+[printers.bambu-x1c]
+name = "Bambu Lab X1 Carbon"
+build_volume = [256, 256, 256]
+max_nozzle_temp = 300
+max_bed_temp = 110
+enclosed = true
+filament_slots = 4  # AMS
+
+[printers.k2-pro]
+name = "Creality K2 Pro"
+build_volume = [300, 300, 300]
+max_nozzle_temp = 350
+max_bed_temp = 120
+enclosed = true
+filament_slots = 4  # CFS
+
+[printers.k1c]
+name = "Creality K1C"
+build_volume = [220, 220, 250]
+max_nozzle_temp = 300
+max_bed_temp = 100
+enclosed = true
+filament_slots = 1
+
+[printers.ender3-v3]
+name = "Creality Ender-3 V3"
+build_volume = [220, 220, 250]
+max_nozzle_temp = 300
+max_bed_temp = 110
+enclosed = false
+filament_slots = 1
+
+[printers.prusa-mk4s]
+name = "Prusa MK4S"
+build_volume = [250, 210, 220]
+max_nozzle_temp = 290
+max_bed_temp = 120
+enclosed = false
+filament_slots = 1
+
+[printers.prusa-core-one]
+name = "Prusa CORE One"
+build_volume = [250, 220, 270]
+max_nozzle_temp = 290
+max_bed_temp = 120
+enclosed = true
+filament_slots = 1
