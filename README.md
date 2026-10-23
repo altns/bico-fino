@@ -148,6 +148,16 @@ Suggested structure for each project in `projetos/<name>/`:
 
 > This public repository ignores `projetos/` and `modelos/originais/`, so personal work and third-party downloads stay on your machine. To version them in a private copy, remove those lines from `.gitignore`.
 
+**Keeping your projects in a private repo.** The author's setup keeps personal projects in a separate private repository cloned at `privado/` (also ignored), and makes `projetos/` and `modelos/originais/` Windows directory junctions pointing into it, so every path stays the same:
+
+```powershell
+git clone git@github.com:<you>/<your-private-repo>.git privado
+New-Item -ItemType Junction -Path projetos -Target privado\projetos
+New-Item -ItemType Junction -Path modelos\originais -Target privado\modelos\originais
+```
+
+Copy `.gitattributes` into the private repo so its 3D files also go through Git LFS, and commit there with `git -C privado ...`.
+
 ## Mesh tools
 
 All tools read **STL, OBJ and 3MF** (including multi-object Bambu/Orca/Flash Studio projects) and write **3MF** with named objects, ready to open in any slicer.

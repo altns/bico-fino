@@ -12,8 +12,8 @@ modelos/exportados/
 *.FCStd1
 .claude/settings.local.json
 
-# Projetos pessoais e modelos baixados: ficam só na máquina (repositório público)
-projetos/*
-!projetos/.gitkeep
-modelos/originais/*
-!modelos/originais/.gitkeep
+# Projetos pessoais e modelos baixados: ficam só na máquina (repositório público).
+# No setup do autor, são junções para um repositório privado em privado/.
+/projetos
+/modelos/originais
+/privado/

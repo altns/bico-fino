@@ -75,6 +75,10 @@ Os MCPs de Blender e FreeCAD só funcionam com o programa aberto e o servidor in
 - Antes de entregar: rode `info_malha.py` (cada peça fechada, 1 corpo) e compare seções com o original quando a forma precisa ser preservada.
 
 ## Organização
+Dois repositórios:
+- `C:\3D` — público (github.com/altns/bico-fino): ferramentas, scripts, perfis, docs. **Nunca** coloque projetos pessoais nem modelos baixados aqui.
+- `C:\3D\privado` — privado (github.com/altns/bico-fino-projetos), com Git LFS: projetos e downloads. `C:\3D\projetos` e `C:\3D\modelos\originais` são **junções** para `privado\projetos` e `privado\modelos\originais`. Faça commit dos projetos com `git -C C:\3D\privado ...`.
+
 - `projetos/<nome>/` — um projeto por peça (projetos de nome com letra ficam em `projetos/Nomes com letra/<nome>/`). Cada projeto tem:
   - `original/` — arquivo de origem (download/encomenda), nunca editado.
   - `fontes/` — o que gera a peça: scripts, `.scad`, `.FCStd`, `.blend`, 3MF de trabalho/montagem.
