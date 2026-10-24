@@ -1,3 +1,30 @@
 {
-  "enabledMcpjsonServers": ["build123d", "blender", "freecad", "openscad"]
+  "enabledMcpjsonServers": ["build123d", "blender", "freecad", "openscad"],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.venv/Scripts/python.exe\" -X utf8 \"$CLAUDE_PROJECT_DIR/scripts/hooks/guard_print.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Write|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.venv/Scripts/python.exe\" -X utf8 \"$CLAUDE_PROJECT_DIR/scripts/hooks/check_new_meshes.py\"",
+            "timeout": 60,
+            "statusMessage": "Checking new meshes in final/"
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -22,6 +22,7 @@ A small, opinionated workbench for **modeling, repairing, splitting and preparin
 - [Mesh tools](#mesh-tools)
 - [Flashforge printer helper (LAN API)](#flashforge-printer-helper-lan-api)
 - [MCP servers for AI agents](#mcp-servers-for-ai-agents)
+- [Claude Code hooks, skills and agents](#claude-code-hooks-skills-and-agents)
 - [Versioning 3D files with Git LFS](#versioning-3d-files-with-git-lfs)
 - [FDM design rules](#fdm-design-rules)
 - [License](#license)
@@ -294,6 +295,41 @@ The uploaded file must already be **sliced** (`.gcode` or `.gcode.3mf`). On the 
 - The paths in `.mcp.json` point to `C:\3D` and to the default OpenSCAD Nightly location. Edit them to match your clone and installs.
 - `scripts/mcp.cmd` calls mise from `%LOCALAPPDATA%\Microsoft\WinGet\Links\mise.exe` (the WinGet install location). Change it if you installed mise elsewhere.
 - With Claude Code, open the repo folder and approve the project MCP servers. `.claude/settings.json` already enables all four. `CLAUDE.md` tells the agent which tool to use for what, where the printer profiles are, and the design rules below. Edit its *The user's printer* section to describe your own machine and slicer.
+
+## Claude Code hooks, skills and agents
+
+Everything here lives in `.claude/` and loads automatically when you open the repo in Claude Code.
+
+**Hooks** ([`.claude/settings.json`](.claude/settings.json), scripts in `scripts/hooks/`)
+
+| Hook | When | What it does |
+|---|---|---|
+| `check_new_meshes.py` | After every Bash/PowerShell/Write/MCP tool call | Finds `.3mf`/`.stl` files in any `projects/**/final/` folder that changed since the last check and verifies each object is watertight, a single body and fits the active printer. Problems go straight back to Claude; a clean check adds a one-line note. The first run only records a timestamp. |
+| `guard_print.py` | Before every Bash/PowerShell call | If the command would start a print (`flashforge_lan.py upload ... --print`), Claude Code asks you for permission, whatever the permission mode. |
+
+The hook commands call `.venv/Scripts/python.exe` (Windows). On Linux/macOS change it to `.venv/bin/python`.
+
+**Skills** (`.claude/skills/`)
+
+| Skill | Use it for |
+|---|---|
+| `prepare-print` | Inspect → repair → fit/split → design-rule check → save to `final/` → update the README. |
+| `new-project` | Create `projects/<name>/` with `original/`, `source/`, `final/` and a README template. |
+| `b123d-modeling`, `b123d-edit`, `b123d-repair` | The build123d MCP server's own workflows (installed with its `install_skill` tool): model from a description or drawing, edit existing parts, repair invalid solids. |
+
+**Agent** (`.claude/agents/mesh-reviewer.md`): a read-only reviewer that checks files in `final/` (watertight, bodies, fit, sections vs. the original, design rules, README consistency) and reports PASS/FAIL per file. Ask for it explicitly, e.g. *"use the mesh-reviewer agent on projects/Theo"*.
+
+### Third-party extras worth considering
+
+Researched on 2026-10-23 (stars and dates checked on GitHub, features from the READMEs, nothing tested). None of these is installed. Pin exact versions (`npx -y pkg@x.y.z`, `uvx pkg==x.y.z`) and keep print-start confirmations on.
+
+| Need | Project | Notes |
+|---|---|---|
+| Bambu Lab printers (LAN) | [DMontgomery40/bambu-printer-mcp](https://github.com/DMontgomery40/bambu-printer-mcp) | GPL-2.0, actively maintained, MQTT/FTPS with the access code, Bambu Studio CLI slicing, preflight confirmation for print starts. Avoid look-alike forks. |
+| Klipper/Moonraker, OctoPrint, PrusaLink, Creality | [DMontgomery40/mcp-3D-printer-server](https://github.com/DMontgomery40/mcp-3D-printer-server) | GPL-2.0, one server for many backends, human confirmation on by default (never set `PRINT_REQUIRE_CONFIRMATION=0`). Moonraker/Prusa support is community-reported. |
+| Printability checks + OrcaSlicer CLI slicing | [earthtojake/text-to-cad](https://github.com/earthtojake/text-to-cad) | Claude Code plugin (MIT) with a DfAM check skill and a G-code skill. Telemetry is **on by default** (`uvx cadgen telemetry off`); its unsigned DLL is blocked by Windows Smart App Control. |
+| OpenSCAD design / reconstruct from STL | [andreahaku/openscad_claude_skill](https://github.com/andreahaku/openscad_claude_skill) | Complements openscad-mcp; no license and Bash-only scripts. |
+| Flashforge | — | No dedicated MCP exists; `scripts/flashforge_lan.py` is the integration. |
 
 ## Versioning 3D files with Git LFS
 

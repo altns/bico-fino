@@ -61,6 +61,13 @@ Libraries: trimesh, manifold3d (robust booleans), build123d (CAD in code), pymes
 
 The Blender and FreeCAD MCPs only work with the program open and the server started.
 
+### Hooks, skills and agents (`.claude/`)
+- Hook `scripts/hooks/check_new_meshes.py` runs after tool calls and checks any `.3mf`/`.stl` changed in `projects/**/final/` (watertight, 1 body, fits the active printer). When it reports a problem, fix it before delivering.
+- Hook `scripts/hooks/guard_print.py` makes any command that starts a print ask the user first.
+- Skills: `prepare-print` (get a part print-ready), `new-project` (create a project folder), `b123d-modeling` / `b123d-edit` / `b123d-repair` (build123d MCP workflows).
+- Agent `mesh-reviewer`: read-only second opinion on files in `final/` before delivering.
+- Third-party printer MCPs (Bambu, Klipper/OctoPrint/Prusa) are listed in the README but not installed; install only if the user asks, with pinned versions.
+
 ### Installed programs
 - **Flash Studio Desktop** (`C:\Program Files\Flashforge\Flash Studio Desktop\`) — the slicer the user uses, which connects to the AD5X. Deliver models as **3MF** (or STL) to open in it. Don't suggest Orca-Flashforge (outdated).
 - **OrcaSlicer** — installed, but **does not connect to the user's printer**. Use it only as a reference for the "@FF AD5X" profiles or to slice from the command line if needed.
